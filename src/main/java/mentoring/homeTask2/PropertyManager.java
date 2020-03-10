@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 class PropertyManager {
 
-    final static String PROPERTY_FILE_PATH = "config.properties";
-    final static String PROPERTY_FILE_PATH_NEW = "configSort.properties";
+    final static String PROPERTY_FILE_PATH = "configOld.properties";
+    final static String PROPERTY_FILE_PATH_NEW = "config.properties";
 
     static <T> Map<T, Long> getItemsOccurrenceInList(List<T> list) {
         return list.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
@@ -47,6 +47,10 @@ class PropertyManager {
         } catch (IOException io) {
             io.printStackTrace();
         }
+    }
+
+    static String getRandomDelimiter(){
+        return new Random().nextBoolean() ? "=" : ":";
     }
 
     static class SortedProperties extends Properties {
